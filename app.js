@@ -18,19 +18,13 @@ app.get('/', function(req, res){
 });
 
 app.post('/api/users', function(req, res){
-
   UserValidator.validate(req.body, function(err){
-
-    if(err) return res.status(400).json(err); 
-
+    if(Object.keys(err).length > 0) return res.status(400).json(err); 
     User.create(req.body, function(err, data){
       if(err) return res.status(400).json(err); 
-      res.json(data);
+      res.status(200).json(data);
     });  
-
   });
-
-
 });
 
 app.get('/api/users/:id', function(req, res){

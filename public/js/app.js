@@ -1,9 +1,12 @@
 $(function(){
   $('form').submit(function(e){
-    $.post('/api/users', $(this).serialize(), function(data){
-      document.getElementById('signupForm').reset();
-      alert('Signed Up successfully!!!');
-    });
+    $.post('/api/users', $(this).serialize())
+     .done(function(){
+        document.getElementById('signupForm').reset();
+        alert('Signed Up successfully!!!');
+      }).fail(function(){
+        alert('error');
+      });
     e.preventDefault(); 
   });
 

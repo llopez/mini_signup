@@ -3,7 +3,7 @@ var List = React.createClass({
     return {data: []};
   },
   componentDidMount: function(){
-    fetch("./api/users")
+    fetch(this.props.url)
       .then(function(res){
         return res.json();
       })
@@ -40,6 +40,6 @@ var Item = React.createClass({
 
 
 ReactDOM.render(
-  <List />,
+  <List url="/api/users" />,
   document.getElementById('content')
 );

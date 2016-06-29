@@ -1,5 +1,3 @@
-var db = require('../db.js')
-
 var UserValidator = function(data){
   this.data = data;
   this.errors = {};

@@ -1,23 +1,25 @@
 var express = require('express');
-var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var path = require("path");
 
 var app = express();
 
-app.set('view engine', 'pug');
 app.use(express.static('public'));
 app.use(bodyParser.json());
-app.use(morgan('combined'));
 
-var User = require('./models/user.js')
-var UserValidator = require('./models/user_validator.js');
+var User = require('./user.js')
+var UserValidator = require('./user_validator.js');
 
 app.get('/new', function(req, res){
   res.render('new');
 });
 
+app.get('/bundle.js', function(req, res){
+  res.status(200).sendFile(path.join(__dirname + '/../../build/bundle.js'));
+});
+
 app.get('/', function(req, res){
-  res.render('index');
+  res.status(200).sendFile(path.join(__dirname + '/../../build/index.html'));
 });
 
 var validator = function(req, res, next){

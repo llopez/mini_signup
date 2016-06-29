@@ -1,4 +1,4 @@
-var db = require('../db.js')
+var db = require('./db.js')
 
 var User = function(data){
   this.data = data;

@@ -1,3 +1,5 @@
+import React from 'react';
+
 class List extends React.Component {
   constructor (props, context) {
     super(props, context);

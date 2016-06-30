@@ -4,7 +4,7 @@ var path = require("path");
 
 var app = express();
 
-app.use(express.static('public'));
+app.use(express.static('dist'));
 app.use(bodyParser.json());
 
 var User = require('./user.js')
@@ -14,12 +14,8 @@ app.get('/new', function(req, res){
   res.render('new');
 });
 
-app.get('/bundle.js', function(req, res){
-  res.status(200).sendFile(path.join(__dirname + '/../../build/bundle.js'));
-});
-
 app.get('/', function(req, res){
-  res.status(200).sendFile(path.join(__dirname + '/../../build/index.html'));
+  res.status(200).sendFile(path.join(__dirname + '/../../dist/index.html'));
 });
 
 var validator = function(req, res, next){

@@ -1,29 +1,34 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-var Form = React.createClass({
-  getInitialState: function(){
-    return {
+class Form extends React.Component{
+  constructor (props, context) {
+    super(props, context);
+
+    this.state = {
       data: {firstName: "", lastName: "", age: ""}, 
       errors: {firstName: [], lastName: [], age: []} 
-    };
-  },
-  handleFirstNameChange: function(e){
+    }
+  }
+
+  handleFirstNameChange (e) {
     var aux = this.state;
     aux.data.firstName = e.target.value;
     this.setState(aux);
-  },
-  handleLastNameChange: function(e){
+  }
+
+  handleLastNameChange (e) {
     var aux = this.state;
     aux.data.lastName = e.target.value;
     this.setState(aux);
-  },
-  handleAgeChange: function(e){
+  }
+
+  handleAgeChange (e) {
     var aux = this.state;
     aux.data.age = e.target.value;
     this.setState(aux);
-  },
-  handleSubmit: function(e){
+  }
+
+  handleSubmit (e) {
     e.preventDefault();
     fetch(this.props.url, {
       method: 'POST',
@@ -36,10 +41,10 @@ var Form = React.createClass({
       return res.json();
     }).then((res) => {
       this.setState(res);
-      // e.target.reset(); // does not work
     });
-  },
-  render: function(){
+  }
+
+  render () {
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>Mini Battle</h1>
@@ -59,10 +64,7 @@ var Form = React.createClass({
       </form>
     );
   }
-});
+}
 
+module.exports = Form;
 
-ReactDOM.render(
-  <Form url="/api/users" />,
-  document.getElementById('content')
-);

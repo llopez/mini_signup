@@ -24,11 +24,8 @@ User.findById = function(id, callback){
 }
 
 User.findAll = function(callback){
-  db.many("SELECT * FROM users")
+  db.map("SELECT * FROM users", null, u => new User(u))
     .then(function(data){
-      var collection = data.map(function(x){
-        return new User(x);
-      });
       callback(null, collection);
     }).catch(function(err){
       callback(err, null);
